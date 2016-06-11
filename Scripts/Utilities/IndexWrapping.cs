@@ -25,7 +25,7 @@ THE SOFTWARE.
 using System;
 using senritsu.UnityGridTools.Scripts.IntVectors;
 
-namespace Assets.UnityGridTools.Scripts.Utilities
+namespace senritsu.UnityGridTools.Scripts.Utilities
 {
     public static class IndexWrapping
     {
