@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 \***************************************************************************/
 
-namespace senritsu.UnityGridTools.Scripts
+namespace senritsu.UnityGridTools.Scripts.IntVectors
 {
     public static class IntVectorRotationExtensions
     {
