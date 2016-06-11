@@ -25,7 +25,7 @@ THE SOFTWARE.
 using System;
 using UnityEngine;
 
-namespace senritsu.UnityGridTools.Scripts
+namespace senritsu.UnityGridTools.Scripts.IntVectors
 {
     public struct IntVector3 : IEquatable<IntVector3>
     {

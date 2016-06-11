@@ -25,7 +25,7 @@ THE SOFTWARE.
 using System;
 using UnityEngine;
 
-namespace senritsu.UnityGridTools.Scripts
+namespace senritsu.UnityGridTools.Scripts.IntVectors
 {
     public struct IntVector2 : IEquatable<IntVector2>
     {
@@ -169,6 +169,8 @@ namespace senritsu.UnityGridTools.Scripts
             return new IntVector2(v.x / i, v.y / i);
         }
 
+        #region Operators
+
         public static implicit operator Vector2(IntVector2 v)
         {
             return new Vector2(v.x, v.y);
@@ -198,6 +200,8 @@ namespace senritsu.UnityGridTools.Scripts
         {
             return new IntVector2(v.x, v.y);
         }
+
+        #endregion
 
         public override bool Equals(object obj)
         {
