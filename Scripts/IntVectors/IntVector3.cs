@@ -183,6 +183,16 @@ namespace senritsu.UnityGridTools.Scripts.IntVectors
             return new IntVector3(v.x / i, v.y / i, v.z / i);
         }
 
+        public static implicit operator Vector2(IntVector3 v)
+        {
+            return new Vector2(v.x, v.y);
+        }
+
+        public static implicit operator IntVector3(Vector2 v)
+        {
+            return new IntVector3(Mathf.RoundToInt(v.x), Mathf.RoundToInt(v.y), 0);
+        }
+
         public static implicit operator Vector3(IntVector3 v)
         {
             return new Vector3(v.x, v.y, v.z);
@@ -191,6 +201,16 @@ namespace senritsu.UnityGridTools.Scripts.IntVectors
         public static implicit operator IntVector3(Vector3 v)
         {
             return new IntVector3(Mathf.RoundToInt(v.x), Mathf.RoundToInt(v.y), Mathf.RoundToInt(v.z));
+        }
+
+        public static implicit operator IntVector3(IntVector2 v)
+        {
+            return new IntVector3(v.x, v.y, 0);
+        }
+
+        public static implicit operator IntVector2(IntVector3 v)
+        {
+            return new IntVector2(v.x, v.y);
         }
 
         public override bool Equals(object obj)
