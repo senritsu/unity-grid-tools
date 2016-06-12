@@ -22,12 +22,21 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 \***************************************************************************/
 
+using System;
 using System.Collections.Generic;
 using senritsu.UnityGridTools.Scripts.IntVectors;
 using UnityEngine;
 
 namespace senritsu.UnityGridTools.Scripts.Utilities
 {
+    public class InvalidNumberOfComponentsException<T> : InvalidOperationException
+    {
+        public InvalidNumberOfComponentsException(string swizzleSpec) : base(string.Format("Invalid number of components, cannot swizzle '{0}' to {1}", swizzleSpec, typeof(T).Name))
+        {
+            
+        }
+    }
+
     public static class VectorSwizzleExtensions
     {
         private static readonly Dictionary<char, int> ComponentMapping = new Dictionary<char, int>
@@ -111,47 +120,343 @@ namespace senritsu.UnityGridTools.Scripts.Utilities
             return i >= 3 ? 0 : v[i];
         }
 
-        public static Vector2 Swizzle(this Vector2 v, string components)
+        public static Vector2 SwizzleVector2(this Vector2 v, string components)
         {
+            if (components.Length != 2)
+            {
+                throw new InvalidNumberOfComponentsException<Vector2>(components);
+            }
+
             return new Vector2(
-                components.Length > 0 ? GetComponent(v, components[0]) : 0,
-                components.Length > 1 ? GetComponent(v, components[1]) : 0
+                GetComponent(v, components[0]),
+                GetComponent(v, components[1])
                 );
         }
 
-        public static Vector3 Swizzle(this Vector3 v, string components)
+        public static Vector2 SwizzleVector2(this IntVector2 v, string components)
         {
-            return new Vector3(
-                components.Length > 0 ? GetComponent(v, components[0]) : 0,
-                components.Length > 1 ? GetComponent(v, components[1]) : 0,
-                components.Length > 2 ? GetComponent(v, components[2]) : 0
+            if (components.Length != 2)
+            {
+                throw new InvalidNumberOfComponentsException<Vector2>(components);
+            }
+
+            return new Vector2(
+                GetComponent(v, components[0]),
+                GetComponent(v, components[1])
                 );
         }
 
-        public static Vector4 Swizzle(this Vector4 v, string components)
+        public static Vector2 SwizzleVector2(this Vector3 v, string components)
         {
-            return new Vector4(
-                components.Length > 0 ? GetComponent(v, components[0]) : 0,
-                components.Length > 1 ? GetComponent(v, components[1]) : 0,
-                components.Length > 2 ? GetComponent(v, components[2]) : 0,
-                components.Length > 3 ? GetComponent(v, components[3]) : 0
+            if (components.Length != 2)
+            {
+                throw new InvalidNumberOfComponentsException<Vector2>(components);
+            }
+
+            return new Vector2(
+                GetComponent(v, components[0]),
+                GetComponent(v, components[1])
                 );
         }
 
-        public static IntVector2 Swizzle(this IntVector2 v, string components)
+        public static Vector2 SwizzleVector2(this IntVector3 v, string components)
         {
+            if (components.Length != 2)
+            {
+                throw new InvalidNumberOfComponentsException<Vector2>(components);
+            }
+
+            return new Vector2(
+                GetComponent(v, components[0]),
+                GetComponent(v, components[1])
+                );
+        }
+
+        public static Vector2 SwizzleVector2(this Vector4 v, string components)
+        {
+            if (components.Length != 2)
+            {
+                throw new InvalidNumberOfComponentsException<Vector2>(components);
+            }
+
+            return new Vector2(
+                GetComponent(v, components[0]),
+                GetComponent(v, components[1])
+                );
+        }
+
+        public static IntVector2 SwizzleIntVector2(this Vector2 v, string components)
+        {
+            if (components.Length != 2)
+            {
+                throw new InvalidNumberOfComponentsException<IntVector2>(components);
+            }
+
             return new IntVector2(
-                components.Length > 0 ? GetComponent(v, components[0]) : 0,
-                components.Length > 1 ? GetComponent(v, components[1]) : 0
+                Mathf.RoundToInt(GetComponent(v, components[0])),
+                Mathf.RoundToInt(GetComponent(v, components[1]))
                 );
         }
 
-        public static IntVector3 Swizzle(this IntVector3 v, string components)
+        public static IntVector2 SwizzleIntVector2(this IntVector2 v, string components)
         {
+            if (components.Length != 2)
+            {
+                throw new InvalidNumberOfComponentsException<IntVector2>(components);
+            }
+
+            return new IntVector2(
+                GetComponent(v, components[0]),
+                GetComponent(v, components[1])
+                );
+        }
+
+        public static IntVector2 SwizzleIntVector2(this Vector3 v, string components)
+        {
+            if (components.Length != 2)
+            {
+                throw new InvalidNumberOfComponentsException<IntVector2>(components);
+            }
+
+            return new IntVector2(
+                Mathf.RoundToInt(GetComponent(v, components[0])),
+                Mathf.RoundToInt(GetComponent(v, components[1]))
+                );
+        }
+
+        public static IntVector2 SwizzleIntVector2(this IntVector3 v, string components)
+        {
+            if (components.Length != 2)
+            {
+                throw new InvalidNumberOfComponentsException<IntVector2>(components);
+            }
+
+            return new IntVector2(
+                GetComponent(v, components[0]),
+                GetComponent(v, components[1])
+                );
+        }
+
+        public static IntVector2 SwizzleIntVector2(this Vector4 v, string components)
+        {
+            if (components.Length != 2)
+            {
+                throw new InvalidNumberOfComponentsException<IntVector2>(components);
+            }
+
+            return new IntVector2(
+                Mathf.RoundToInt(GetComponent(v, components[0])),
+                Mathf.RoundToInt(GetComponent(v, components[1]))
+                );
+        }
+
+        public static Vector3 SwizzleVector3(this Vector2 v, string components)
+        {
+            if (components.Length != 2)
+            {
+                throw new InvalidNumberOfComponentsException<Vector3>(components);
+            }
+
+            return new Vector3(
+                GetComponent(v, components[0]),
+                GetComponent(v, components[1]),
+                GetComponent(v, components[2])
+                );
+        }
+
+        public static Vector3 SwizzleVector3(this IntVector2 v, string components)
+        {
+            if (components.Length != 2)
+            {
+                throw new InvalidNumberOfComponentsException<Vector3>(components);
+            }
+
+            return new Vector3(
+                GetComponent(v, components[0]),
+                GetComponent(v, components[1]),
+                GetComponent(v, components[2])
+                );
+        }
+
+        public static Vector3 SwizzleVector3(this Vector3 v, string components)
+        {
+            if (components.Length != 2)
+            {
+                throw new InvalidNumberOfComponentsException<Vector3>(components);
+            }
+
+            return new Vector3(
+                GetComponent(v, components[0]),
+                GetComponent(v, components[1]),
+                GetComponent(v, components[2])
+                );
+        }
+
+        public static Vector3 SwizzleVector3(this IntVector3 v, string components)
+        {
+            if (components.Length != 2)
+            {
+                throw new InvalidNumberOfComponentsException<Vector3>(components);
+            }
+
+            return new Vector3(
+                GetComponent(v, components[0]),
+                GetComponent(v, components[1]),
+                GetComponent(v, components[2])
+                );
+        }
+
+        public static Vector3 SwizzleVector3(this Vector4 v, string components)
+        {
+            if (components.Length != 2)
+            {
+                throw new InvalidNumberOfComponentsException<Vector3>(components);
+            }
+
+            return new Vector3(
+                GetComponent(v, components[0]),
+                GetComponent(v, components[1]),
+                GetComponent(v, components[2])
+                );
+        }
+
+        public static IntVector3 SwizzleIntVector3(this Vector2 v, string components)
+        {
+            if (components.Length != 2)
+            {
+                throw new InvalidNumberOfComponentsException<IntVector3>(components);
+            }
+
             return new IntVector3(
-                components.Length > 0 ? GetComponent(v, components[0]) : 0,
-                components.Length > 1 ? GetComponent(v, components[1]) : 0,
-                components.Length > 2 ? GetComponent(v, components[2]) : 0
+                Mathf.RoundToInt(GetComponent(v, components[0])),
+                Mathf.RoundToInt(GetComponent(v, components[1])),
+                Mathf.RoundToInt(GetComponent(v, components[2]))
+                );
+        }
+
+        public static IntVector3 SwizzleIntVector3(this IntVector2 v, string components)
+        {
+            if (components.Length != 2)
+            {
+                throw new InvalidNumberOfComponentsException<IntVector3>(components);
+            }
+
+            return new IntVector3(
+                GetComponent(v, components[0]),
+                GetComponent(v, components[1]),
+                GetComponent(v, components[2])
+                );
+        }
+
+        public static IntVector3 SwizzleIntVector3(this Vector3 v, string components)
+        {
+            if (components.Length != 2)
+            {
+                throw new InvalidNumberOfComponentsException<IntVector3>(components);
+            }
+
+            return new IntVector3(
+                Mathf.RoundToInt(GetComponent(v, components[0])),
+                Mathf.RoundToInt(GetComponent(v, components[1])),
+                Mathf.RoundToInt(GetComponent(v, components[2]))
+                );
+        }
+
+        public static IntVector3 SwizzleIntVector3(this IntVector3 v, string components)
+        {
+            if (components.Length != 2)
+            {
+                throw new InvalidNumberOfComponentsException<IntVector3>(components);
+            }
+
+            return new IntVector3(
+                GetComponent(v, components[0]),
+                GetComponent(v, components[1]),
+                GetComponent(v, components[2])
+                );
+        }
+
+        public static IntVector3 SwizzleIntVector3(this Vector4 v, string components)
+        {
+            if (components.Length != 2)
+            {
+                throw new InvalidNumberOfComponentsException<IntVector3>(components);
+            }
+
+            return new IntVector3(
+                Mathf.RoundToInt(GetComponent(v, components[0])),
+                Mathf.RoundToInt(GetComponent(v, components[1])),
+                Mathf.RoundToInt(GetComponent(v, components[2]))
+                );
+        }
+
+        public static Vector4 SwizzleVector4(this Vector2 v, string components)
+        {
+            if (components.Length != 2)
+            {
+                throw new InvalidNumberOfComponentsException<Vector4>(components);
+            }
+
+            return new Vector4(
+                GetComponent(v, components[0]),
+                GetComponent(v, components[1]),
+                GetComponent(v, components[2])
+                );
+        }
+
+        public static Vector4 SwizzleVector4(this IntVector2 v, string components)
+        {
+            if (components.Length != 2)
+            {
+                throw new InvalidNumberOfComponentsException<Vector4>(components);
+            }
+
+            return new Vector4(
+                GetComponent(v, components[0]),
+                GetComponent(v, components[1]),
+                GetComponent(v, components[2])
+                );
+        }
+
+        public static Vector4 SwizzleVector4(this Vector3 v, string components)
+        {
+            if (components.Length != 2)
+            {
+                throw new InvalidNumberOfComponentsException<Vector4>(components);
+            }
+
+            return new Vector4(
+                GetComponent(v, components[0]),
+                GetComponent(v, components[1]),
+                GetComponent(v, components[2])
+                );
+        }
+
+        public static Vector4 SwizzleVector4(this IntVector3 v, string components)
+        {
+            if (components.Length != 2)
+            {
+                throw new InvalidNumberOfComponentsException<Vector4>(components);
+            }
+
+            return new Vector4(
+                GetComponent(v, components[0]),
+                GetComponent(v, components[1]),
+                GetComponent(v, components[2])
+                );
+        }
+
+        public static Vector4 SwizzleVector4(this Vector4 v, string components)
+        {
+            if (components.Length != 2)
+            {
+                throw new InvalidNumberOfComponentsException<Vector4>(components);
+            }
+
+            return new Vector4(
+                GetComponent(v, components[0]),
+                GetComponent(v, components[1]),
+                GetComponent(v, components[2])
                 );
         }
     }
